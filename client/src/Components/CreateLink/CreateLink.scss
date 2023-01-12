@@ -1,0 +1,52 @@
+.create__link {
+  animation: show__div 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 15px;
+  .link__input {
+    border-radius: 10px;
+    border: solid 1px black;
+    height: 40px;
+    width: 85%;
+  }
+  .buttons {
+    width: 13%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+      width: 50%;
+      background: none;
+      border: none;
+      image {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}
+
+@keyframes show__div {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 500px) {
+  .create__link {
+    .link__input {
+      width: 65%;
+    }
+    .buttons {
+      width: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}

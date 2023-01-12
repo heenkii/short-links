@@ -1,0 +1,77 @@
+.btn__selected {
+  background-color: grey;
+}
+
+.user__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 80%;
+  min-height: 90%;
+  .tool__panel {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    .find__link {
+      width: 70%;
+      border-radius: 10px;
+      border: solid 1px black;
+      padding-left: 10px;
+      height: 40px;
+      width: 85%;
+    }
+    .create__link__btn {
+      width: 13%;
+    }
+  }
+  .sort__panel {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    .sort__div {
+      width: 30%;
+      .btn {
+        width: 100%;
+        height: 40px;
+      }
+    }
+
+    .links__list {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .user__content {
+    width: 100%;
+    min-height: 90%;
+    .tool__panel {
+      .find__link {
+        width: 65%;
+      }
+      .create__link__btn {
+        width: 30%;
+        height: 40px;
+      }
+    }
+    .sort__panel {
+      width: 100%;
+      .sort__div {
+        width: 30%;
+        .btn {
+          width: 100%;
+          height: 40px;
+        }
+      }
+
+      .links__list {
+        width: 100%;
+      }
+    }
+  }
+}

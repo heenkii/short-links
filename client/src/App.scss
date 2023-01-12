@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&display=swap");
+
+.wrapper {
+  font-family: "Montserrat", sans-serif;
+  font-family: "Baloo Tamma 2", cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-weight: bold;
+  //background-color: #141414;
+  background-color: #1d1d1d;
+  color: white;
+  align-items: center;
+
+  input {
+    padding: 10px;
+  }
+  .btn {
+    border: solid 1px rgb(0, 0, 0);
+    background-color: #b6ff00;
+    color: black;
+    font-weight: bold;
+  }
+
+  .main {
+    flex: 1 1 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .content {
+    min-height: 100%;
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+  }
+}
