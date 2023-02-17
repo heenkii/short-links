@@ -10,17 +10,7 @@ app.use(cors());
 
 app.use(express.json());
 
-// var privateKey = fs.readFileSync("./key.pem"); //, "utf8");
-// var certificate = fs.readFileSync("./cert.pem"); //
-
-// var credentials = { key: privateKey, cert: certificate };
-
 app.use("/", express.static(path.join(__dirname, "build")));
-
-// httpsOptions = {
-//   key: fs.readFileSync("key.pem"), // путь к ключу
-//   cert: fs.readFileSync("cert.pem"), // путь к сертификату
-// };
 
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "build", "index.html"));
@@ -49,13 +39,3 @@ app.listen(config.get("port"), () => {
     console.log(err);
   }
 });
-
-// your express configuration here
-
-//let httpServer = http.createServer(app);
-// const httpsServer = https.createServer(credentials, app);
-
-// //httpServer.listen(8080);
-// httpsServer.listen(8443);
-
-// https.createServer(httpsOptions, app).listen(80);
