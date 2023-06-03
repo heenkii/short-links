@@ -45,12 +45,12 @@ const AdminPanel = () => {
 
           {addForm ? <CreateLink closeWindow={closeCreateLinkForm} /> : ""}
           <div className="links__list">
-            {links.data.map((link, index) => {
+            {links.data.map((link, key) => {
               if (
                 link.from.includes(linksFilter) ||
                 link.to.includes(linksFilter)
               ) {
-                return <UserLinks link={link} index={index} />;
+                return <UserLinks link={link} key={key} />;
               }
             })}
           </div>
@@ -61,21 +61,3 @@ const AdminPanel = () => {
 };
 
 export default AdminPanel;
-
-/* <div className="sort__panel">
-              <div className="sort__btn name sort__div">
-                <button type="button" className="btn btn-primary name__sort">
-                  Name
-                </button>
-              </div>
-              <div className="sort__btn time sort__div">
-                <button type="button" className="btn btn-primary time__sort">
-                  Time
-                </button>
-              </div>
-              <div className="sort__btn views sort__div">
-                <button type="button" className="btn btn-primary views__sort">
-                  Views
-                </button>
-              </div>
-            </div> */

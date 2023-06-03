@@ -15,7 +15,6 @@ export const fetchRegister = createAsyncThunk(
   "auth/fetchRegister",
   async (params) => {
     const { data } = await axios.post("/auth/register", params);
-    console.log(data);
     return data;
   }
 );

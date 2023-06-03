@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://net-walker.com",
+  baseURL: process.env.REACT_APP_WEBSITE_NAME,
 });
 
 instance.interceptors.request.use((config) => {

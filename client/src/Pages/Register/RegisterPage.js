@@ -10,7 +10,6 @@ import { Link, Navigate } from "react-router-dom";
 import Spinner from "../../Components/Spinner/Spinner";
 
 import "./RegisterPage.scss";
-import { fetchLinks } from "../../redux/slices/links";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");

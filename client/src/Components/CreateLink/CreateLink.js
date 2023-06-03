@@ -9,7 +9,6 @@ import { createLink } from "../../redux/slices/links";
 
 const CreateLink = ({ closeWindow }) => {
   const [link, setLink] = useState("");
-  const [activeBtn, setActiveBtn] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -27,15 +26,16 @@ const CreateLink = ({ closeWindow }) => {
       const params = {
         originalLink: link,
       };
-      const data = await dispatch(createLink(params));
-      setLink((link) => "");
+      dispatch(createLink(params));
+
+      setLink(() => "");
       closeWindow();
     } else {
       alert("Link was'n created");
     }
   };
   const closeForm = () => {
-    setLink((link) => "");
+    setLink(() => "");
     closeWindow();
   };
 
@@ -45,7 +45,7 @@ const CreateLink = ({ closeWindow }) => {
         type="text"
         placeholder="Paste your link here"
         className="link__input"
-        onChange={(e) => setLink((link) => e.target.value)}
+        onChange={(e) => setLink(() => e.target.value)}
         value={link}
       />
       <div className="buttons">

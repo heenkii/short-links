@@ -1,11 +1,11 @@
 {
-  "port": 443,
+  "port": 4000,
   "jwtSecret": "",
   "mongoUri": "",
   "baseUrl": "",
   "clientUrl": "",
 
-  "emailHost": "smtp.mail.ru",
+  "emailHost": "",
   "emailPort": 465,
   "emailSecure": true,
   "emailLogin": "",

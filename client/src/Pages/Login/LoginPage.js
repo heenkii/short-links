@@ -19,7 +19,6 @@ const LoginPage = () => {
   const submitForm = async (event) => {
     event.preventDefault();
     const params = { email: email, password: password };
-    console.log(email, password);
     await setSubmitting((submitting) => true);
     const data = await dispatch(fetchLogin(params));
     await setSubmitting((submitting) => false);

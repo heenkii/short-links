@@ -10,16 +10,16 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use("/", express.static(path.join(__dirname, "build")));
+app.use("/", express.static(path.join(__dirname, "..", "client", "build")));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "build", "index.html"));
+  res.sendFile(path.resolve(__dirname, "..", "client", "build", "index.html"));
 });
 app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
 });
 app.get("/register", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
 });
 
 app.use("/auth", require("./routes/auth.routes"));
