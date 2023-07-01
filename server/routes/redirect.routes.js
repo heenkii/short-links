@@ -1,13 +1,14 @@
 const { Router } = require("express");
-const config = require("config");
-
+const dotenv = require("dotenv");
 const LinksModel = require("../models/Links");
+
+dotenv.config();
 
 const router = Router();
 
 router.get("/:id", async (req, res) => {
   try {
-    const link = config.get("baseUrl") + "/rdr/" + req.params.id;
+    const link = process.env.BASE_URL + "/rdr/" + req.params.id;
     LinksModel.findOneAndUpdate(
       {
         from: link,
@@ -22,7 +23,7 @@ router.get("/:id", async (req, res) => {
       },
       (err, doc) => {
         if (err) {
-          console.log(err);
+          console.error(err);
           return res.status(500).json({
             message: "return value error",
           });

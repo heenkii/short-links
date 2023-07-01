@@ -1,9 +1,11 @@
 const { Router } = require("express");
 const { nanoid } = require("nanoid");
-const config = require("config");
+const dotenv = require("dotenv");
 
 const LinksModel = require("../models/Links");
 const { checkAuth, checkConfirm } = require("../utils/checkAuth");
+
+dotenv.config();
 
 const router = Router();
 
@@ -27,7 +29,7 @@ router.get("/getAll", checkAuth, checkConfirm, async (req, res) => {
 router.post("/create", checkAuth, checkConfirm, async (req, res) => {
   try {
     const urlId = nanoid();
-    const redirectUrl = config.get("baseUrl") + "/rdr/" + urlId;
+    const redirectUrl = process.env.BASE_URL + "/rdr/" + urlId;
 
     const doc = new LinksModel({
       owner: req.userId,

@@ -1,11 +1,11 @@
-//libs
 const { Router } = require("express");
 const bcrypt = require("bcrypt");
-const config = require("config");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const { body, validationResult } = require("express-validator");
+const dotenv = require("dotenv");
 
+dotenv.config();
 //files
 const { checkAuth } = require("../utils/checkAuth");
 const UserModel = require("../models/User");
@@ -14,17 +14,17 @@ const router = Router();
 
 //email config
 const transporter = nodemailer.createTransport({
-  host: config.get("emailHost"),
-  port: config.get("emailPort"),
-  secure: config.get("emailSecure"),
+  host: process.env.EMAIL_HOST,
+  port: process.env.EMAIL_PORT,
+  secure: process.env.EMAIL_SECURE,
   auth: {
-    user: config.get("emailLogin"),
-    pass: config.get("emailPassword"),
+    user: process.env.EMAIL_LOGIN,
+    pass: process.env.EMAIL_PASSWORD,
   },
 });
 
 const getJwtToken = (userId, liveTime) => {
-  const token = jwt.sign({ id: userId }, config.get("jwtSecret"), {
+  const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
     expiresIn: liveTime,
   });
   return token;
@@ -52,7 +52,6 @@ router.post(
   body("password").isLength({ min: 5 }),
   async (req, res) => {
     const errors = validationResult(req);
-    console.log(errors);
     if (!errors.isEmpty()) {
       console.log(errors);
       return res.status(400).json({
@@ -70,7 +69,7 @@ router.post(
       });
       const user = await doc.save();
       const confirmLink =
-        config.get("baseUrl") + `/auth/confirm/${user._doc._id}`;
+        process.env.BASE_URL + `/auth/confirm/${user._doc._id}`;
       await sendConfirmEmail(req.body.email, confirmLink);
       const token = getJwtToken(user._id, "30d");
 
@@ -134,7 +133,7 @@ router.get("/confirm/:id", async (req, res) => {
     const user = await UserModel.findById(userId);
 
     await UserModel.updateOne({ _id: userId }, { confirm: true });
-    res.redirect(config.get("clientUrl") + "/");
+    res.redirect(process.env.CLIENT_URL + "/");
   } catch (error) {
     console.log(error);
     return res.status(400).json({
@@ -159,8 +158,7 @@ router.post("/sendEmail", checkAuth, async (req, res) => {
         message: "User already confirmed",
       });
     }
-    const confirmLink =
-      config.get("baseUrl") + `/auth/confirm/${user._doc._id}`;
+    const confirmLink = process.env.BASE_URL + `/auth/confirm/${user._doc._id}`;
     await sendConfirmEmail(user._doc.email, confirmLink);
     res.status(200).json({
       success: true,

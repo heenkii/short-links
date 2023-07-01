@@ -1,13 +1,15 @@
 const UserModel = require("../models/User");
 
 const jwt = require("jsonwebtoken");
-const config = require("config");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const checkAuth = async (req, res, next) => {
   const token = (req.headers.authorization || "").replace(/Bearer\s?/, "");
   if (token) {
     try {
-      const decoded = jwt.verify(token, config.get("jwtSecret"));
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
       req.userId = decoded.id;
       const user = await UserModel.findById(req.userId);
       if (!user) {
@@ -35,7 +37,7 @@ const checkConfirm = async (req, res, next) => {
   const token = (req.headers.authorization || "").replace(/Bearer\s?/, "");
   if (token) {
     try {
-      const decoded = jwt.verify(token, config.get("jwtSecret"));
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
       req.userId = decoded.id;
       const user = await UserModel.findById(req.userId);
       if (!user) {
